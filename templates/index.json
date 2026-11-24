@@ -162,12 +162,34 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "17954856752d3f3a30": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_1011e95_biYLnL": {
+          "type": "ai_gen_block_1011e95",
+          "settings": {
+            "heading": "",
+            "promo_text": "",
+            "banner_color": "#45c0b6",
+            "collection": "",
+            "vertical_padding": 24,
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_1011e95_biYLnL"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "6a3bb789-ce10-45f5-ae67-e2063ef8c76b",
     "featured_collection",
     "f1552b18-6017-4231-810d-74e61da22c37",
-    "38cdf60f-e431-43b5-aac3-7e6215447d67"
+    "38cdf60f-e431-43b5-aac3-7e6215447d67",
+    "17954856752d3f3a30"
   ]
 }
