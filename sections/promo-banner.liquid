@@ -1,0 +1,131 @@
+
+{% liquid
+  assign heading = section.settings.heading | strip
+  assign promo_text = section.settings.promo_text | strip
+  assign promo_collection = section.settings.collection
+  assign background = section.settings.banner_color
+
+  assign foreground = '#000000'
+  assign brightness = background | color_brightness
+
+  if brightness < 140
+    assign foreground = '#FFFFFF'
+  endif
+%}
+
+{% if heading != blank or promo_text != blank or promo_collection != blank %}
+  <style>
+    .promo-banner-{{ section.id }} {
+      background-color: {{ background }};
+      color: {{ foreground }};
+      padding: {{ section.settings.vertical_padding }}px 20px;
+    }
+
+    .promo-banner-{{ section.id }} .promo-banner__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .promo-banner-{{ section.id }} .promo-banner__content {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .promo-banner-{{ section.id }} .promo-banner__link {
+      display: inline-block;
+      flex-shrink: 0;
+      max-width: 100%;
+      color: inherit;
+      border: 1px solid currentColor;
+      padding: 12px 20px;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 600px) {
+      .promo-banner-{{ section.id }} .promo-banner__inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .promo-banner-{{ section.id }} .promo-banner__link {
+        flex-shrink: 1;
+      }
+    }
+  </style>
+
+  <section class="promo-banner-{{ section.id }}">
+    <div class="promo-banner__inner">
+
+      {% if heading != blank or promo_text != blank %}
+        <div class="promo-banner__content">
+          {% if heading != blank %}
+            <h2>{{ heading | escape }}</h2>
+          {% endif %}
+
+          {% if promo_text != blank %}
+            <p>{{ promo_text | escape }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if promo_collection != blank %}
+        <a
+          class="promo-banner__link"
+          href="{{ promo_collection.url }}"
+        >
+          {{ 'sections.promo_banner.shop_collection' | t | escape }}
+        </a>
+      {% endif %}
+
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.promo_banner.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.promo_banner.heading"
+    },
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "t:sections.promo_banner.text"
+    },
+    {
+      "type": "color",
+      "id": "banner_color",
+      "label": "t:sections.promo_banner.color",
+      "default": "#45c0b6"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.promo_banner.collection"
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "label": "t:sections.promo_banner.padding",
+      "min": 8,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.promo_banner.name"
+    }
+  ]
+}
+{% endschema %}
