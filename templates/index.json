@@ -183,6 +183,17 @@
         "ai_gen_block_1011e95_biYLnL"
       ],
       "settings": {}
+    },
+    "promo_banner_4TDMpp": {
+      "type": "promo-banner",
+      "name": "t:sections.promo_banner.name",
+      "settings": {
+        "heading": "Discover Our Latest Collection",
+        "promo_text": "Explore our newest arrivals and find something you'll love. Shop now and enjoy exclusive offers on selected products!",
+        "banner_color": "#45c0b6",
+        "collection": "automated-collection",
+        "vertical_padding": 24
+      }
     }
   },
   "order": [
@@ -190,6 +201,7 @@
     "featured_collection",
     "f1552b18-6017-4231-810d-74e61da22c37",
     "38cdf60f-e431-43b5-aac3-7e6215447d67",
-    "17954856752d3f3a30"
+    "17954856752d3f3a30",
+    "promo_banner_4TDMpp"
   ]
 }
