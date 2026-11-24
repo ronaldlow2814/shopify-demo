@@ -126,6 +126,7 @@
       "inventory_out_of_stock": "Out of stock",
       "inventory_out_of_stock_continue_selling": "In stock",
       "sku": "SKU",
+      "skill_level": "Skill Level",
       "on_sale": "Sale",
       "product_variants": "Product variants",
       "media": {
@@ -264,7 +265,7 @@
     }
   },
   "sections": {
-    
+
     "promo_banner": {
       "shop_collection": "Shop collection"
     },

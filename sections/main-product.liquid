@@ -312,6 +312,16 @@
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
             {%- when 'buy_buttons' -%}
               {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
+
+            {% assign skill_level = product.metafields.custom.skill_level.value %}
+             
+            {% if skill_level != blank %}
+              <p class="product__skill-level">
+                <strong>{{ 'products.product.skill_level' | t | escape }}</strong>
+                {{ skill_level | escape }}
+              </p>
+            {% endif %}
+
             {%- when 'rating' -%}
               {%- if product.metafields.reviews.rating.value != blank -%}
                 {% liquid
