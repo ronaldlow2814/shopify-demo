@@ -394,6 +394,15 @@
     }
   },
   "sections": {
+     "promo_banner": {
+      "name": "Promo Banner",
+      "heading": "Heading",
+      "text": "Promotional text",
+      "color": "Background colour",
+      "collection": "Collection",
+      "padding": "Vertical padding"
+    }
+    ,
     "all": {
       "animation": {
         "content": "Animations",

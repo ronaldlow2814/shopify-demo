@@ -264,6 +264,11 @@
     }
   },
   "sections": {
+    
+    "promo_banner": {
+      "shop_collection": "Shop collection"
+    },
+
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
