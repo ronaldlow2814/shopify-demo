@@ -1,5 +1,7 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
 
+
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -12,19 +14,21 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-  {% if section.settings.left_background_image != blank %}
-  #shopify-section-{{ section.id }} .image-with-text__media {
-    background-image: url('{{ section.settings.left_background_image | image_url: width: 1500 }}');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
 
-  #shopify-section-{{ section.id }} .image-with-text__media img {
-    object-fit: contain;
-  }
+  {% if section.settings.left_background_image != blank %}
+    #shopify-section-{{ section.id }} .image-with-text__content {
+      background: url('{{ section.settings.left_background_image | image_url: width: 1500 }}')
+        center / cover no-repeat;
+    }
+
+    #shopify-section-{{ section.id }} .image-with-text__content.gradient {
+      background-color: transparent;
+      background-image: url('{{ section.settings.left_background_image | image_url: width: 1500 }}');
+    }
   {% endif %}
 {%- endstyle -%}
+
+
 
 <div class="image-with-text image-with-text--{{ section.settings.content_layout }} page-width isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == 'background-1' and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %} section-{{ section.id }}-padding">
   <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
