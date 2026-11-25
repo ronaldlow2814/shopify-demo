@@ -91,22 +91,22 @@
         "template--18309637636369__f1552b18-6017-4231-810d-74e61da22c37-1680164422d7fb2efc-0": {
           "type": "heading",
           "settings": {
-            "heading": "Stay hydrated",
+            "heading": "&nbsp;A Legendary Collaboration&nbsp;",
             "heading_size": "h1"
           }
         },
         "template--18309637636369__f1552b18-6017-4231-810d-74e61da22c37-1680164422d7fb2efc-1": {
           "type": "text",
           "settings": {
-            "text": "<p>Try our wax subscription so you can fly high, but never dry.</p>",
+            "text": "<p>Celebrating 40 years of Zelda with a legendary snowboard inspired by the world of Hyrule.</p>",
             "text_style": "body"
           }
         },
         "template--18309637636369__f1552b18-6017-4231-810d-74e61da22c37-1680164422d7fb2efc-2": {
           "type": "button",
           "settings": {
-            "button_label": "Get waxy now",
-            "button_link": "shopify://products/selling-plans-ski-wax"
+            "button_label": "Get it now",
+            "button_link": "shopify://products/the-legend-of-zelda-40th-anniversary-snowboard"
           }
         }
       },
