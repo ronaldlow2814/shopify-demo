@@ -12,6 +12,18 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  {% if section.settings.left_background_image != blank %}
+  #shopify-section-{{ section.id }} .image-with-text__media {
+    background-image: url('{{ section.settings.left_background_image | image_url: width: 1500 }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  #shopify-section-{{ section.id }} .image-with-text__media img {
+    object-fit: contain;
+  }
+  {% endif %}
 {%- endstyle -%}
 
 <div class="image-with-text image-with-text--{{ section.settings.content_layout }} page-width isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == 'background-1' and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %} section-{{ section.id }}-padding">
@@ -42,7 +54,7 @@
             | image_url: width: 1500
             | image_tag: loading: 'lazy', sizes: sizes, widths: widths
           }}
-        {%- else -%}
+        {%- elsif section.settings.left_background_image == blank -%}
           {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
         {%- endif -%}
       </div>
@@ -105,6 +117,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-with-text.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_background_image",
+      "label": "Left image background"
     },
     {
       "type": "select",
