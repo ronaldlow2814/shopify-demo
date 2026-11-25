@@ -15,8 +15,8 @@
         "template--18309637636369__6a3bb789-ce10-45f5-ae67-e2063ef8c76b-168016437761699a6e-0": {
           "type": "heading",
           "settings": {
-            "heading": "Generated test data",
-            "heading_size": "h1"
+            "heading": "&nbsp;<strong>Make Snowboarding Great Again.</strong>&nbsp;",
+            "heading_size": "h2"
           }
         },
         "template--18309637636369__6a3bb789-ce10-45f5-ae67-e2063ef8c76b-168016437761699a6e-1": {
@@ -130,6 +130,19 @@
         "padding_bottom": 60
       }
     },
+    "cool_collection_scroller_q6e9AH": {
+      "type": "cool-collection-scroller",
+      "name": "Cool Collection Scroller",
+      "settings": {
+        "heading": "Explore Our Collections",
+        "collections": [
+          "the-cool",
+          "hydrogen",
+          "budget-beginner-collection",
+          "automated-collection"
+        ]
+      }
+    },
     "17954856752d3f3a30": {
       "type": "_blocks",
       "blocks": {
@@ -160,19 +173,6 @@
         "banner_color": "#45c0b6",
         "collection": "automated-collection",
         "vertical_padding": 24
-      }
-    },
-    "cool_collection_scroller_q6e9AH": {
-      "type": "cool-collection-scroller",
-      "name": "Cool Collection Scroller",
-      "settings": {
-        "heading": "Explore Our Collections",
-        "collections": [
-          "the-cool",
-          "hydrogen",
-          "budget-beginner-collection",
-          "automated-collection"
-        ]
       }
     }
   },
