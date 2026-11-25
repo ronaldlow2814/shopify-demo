@@ -1,0 +1,241 @@
+
+{% assign featured_collections = section.settings.collections %}
+
+{% if featured_collections != blank %}
+  <style>
+    #shopify-section-{{ section.id }} .cool-collections {
+      padding: 48px 20px;
+      background: #111111;
+      color: #ffffff;
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__header {
+      max-width: 1400px;
+      margin: 0 auto 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__title {
+      margin: 0;
+      color: inherit;
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 800;
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__arrow {
+      width: 42px;
+      height: 42px;
+      border: 1px solid #777;
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__arrow:hover {
+      background: white;
+      color: black;
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__track {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__track::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__card {
+      position: relative;
+      flex: 0 0 clamp(220px, 28vw, 360px);
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border-radius: 14px;
+      scroll-snap-align: start;
+      background: #292929;
+      text-decoration: none;
+      color: white;
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__card:hover .cool-collections__image {
+      transform: scale(1.08);
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      background: linear-gradient(
+        transparent 45%,
+        rgba(0, 0, 0, 0.85)
+      );
+    }
+
+    #shopify-section-{{ section.id }} .cool-collections__name {
+      color: white;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      #shopify-section-{{ section.id }} .cool-collections {
+        padding: 32px 16px;
+      }
+
+      #shopify-section-{{ section.id }} .cool-collections__card {
+        flex-basis: 75%;
+      }
+    }
+  </style>
+
+  <div class="cool-collections">
+    <div class="cool-collections__header">
+      <h2 class="cool-collections__title">
+        {{ section.settings.heading | escape }}
+      </h2>
+
+      <div class="cool-collections__controls">
+        <button
+          type="button"
+          class="cool-collections__arrow"
+          data-scroll-direction="previous"
+          aria-label="{{ 'general.slider.previous_slide' | t | escape }}"
+        >
+          &#8592;
+        </button>
+
+        <button
+          type="button"
+          class="cool-collections__arrow"
+          data-scroll-direction="next"
+          aria-label="{{ 'general.slider.next_slide' | t | escape }}"
+        >
+          &#8594;
+        </button>
+      </div>
+    </div>
+
+    <div class="cool-collections__track">
+      {% for collection in featured_collections %}
+        {% assign collection_image = collection.image
+          | default: collection.products.first.featured_image
+        %}
+
+        <a
+          href="{{ collection.url }}"
+          class="cool-collections__card"
+        >
+          {% if collection_image != blank %}
+            {{
+              collection_image
+              | image_url: width: 800
+              | image_tag:
+                class: 'cool-collections__image',
+                loading: 'lazy'
+            }}
+          {% endif %}
+
+          <div class="cool-collections__overlay">
+            <span class="cool-collections__name">
+              {{ collection.title | escape }}
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const section = document.getElementById(
+        'shopify-section-{{ section.id }}'
+      );
+
+      if (!section) return;
+
+      const track = section.querySelector(
+        '.cool-collections__track'
+      );
+
+      const buttons = section.querySelectorAll(
+        '[data-scroll-direction]'
+      );
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const card = track.querySelector(
+            '.cool-collections__card'
+          );
+
+          if (!card) return;
+
+          const gap = parseFloat(
+            getComputedStyle(track).gap
+          ) || 0;
+
+          const distance = card.getBoundingClientRect().width + gap;
+
+          const direction =
+            button.dataset.scrollDirection === 'next' ? 1 : -1;
+
+          track.scrollBy({
+            left: distance * direction,
+            behavior: 'smooth'
+          });
+        });
+      });
+    })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Cool Collection Scroller",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Explore Our Collections"
+    },
+    {
+      "type": "collection_list",
+      "id": "collections",
+      "label": "Collections",
+      "limit": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cool Collection Scroller"
+    }
+  ]
+}
+{% endschema %}
